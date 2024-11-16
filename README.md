@@ -77,14 +77,14 @@ Just to name a few:
 - [Consumers](https://docs.spring.io/spring-amqp/reference/amqp/receiving-messages/async-annotation-driven.html) implementation with [messaging with rabbitmq](https://spring.io/guides/gs/messaging-rabbitmq)
 - [UI](https://react.dev/) implementation with [React](https://react.dev/)
 - [Domain Driven Design](http://dddcommunity.org) fundamentals
-- SQL and NoSQL databases ([SQL Server](https://www.microsoft.com/en-us/sql-server/sql-server-2017), [mongodb](https://www.mongodb.com)
+- SQL and NoSQL databases [SQL Server](https://www.microsoft.com/en-us/sql-server/sql-server-2017), [mongodb](https://www.mongodb.com)
 - Distributed caching with [Redis](https://redis.io)
 - [Service Layer](https://learn.microsoft.com/en-us/azure/architecture/guide/architecture-styles/n-tier), n-tier
 - Using [RabbitMQ](https://www.rabbitmq.com) and [Kafka](https://kafka.apache.org/) as a message queue
 - Dealing with asynchronous requests, Process Managers and Sagas
 - Monitoring with [App Metrics](https://newrelic.com/), [Grafana](https://grafana.com), [Prometheus](https://prometheus.io/)
 - Logging with [Log4j](https://logging.apache.org/log4j/2.x/index.html), and [ELK stack](https://www.elastic.co/elk-stack)
-- Building [Docker](https://www.docker.com) images, managing containers, networks and [registries](https://hub.docker.com)
+- Building [Docker](https://www.docker.com) images, managing containers, networks and [registries](https://hub.docker.com/u/turknethub)
 - Defining [Docker compose](https://docs.docker.com/compose) stacks
 - Managing your own [nexus](https://artifact.turknet.net.tr) feeds 
 - CI & CD with build services such as [Bitbucket](https://bitbucket.org/turknet-it/workspace/projects/TRANSFORMERS)
