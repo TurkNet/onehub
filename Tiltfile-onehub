@@ -1,0 +1,112 @@
+# -*- mode: Python -*-
+
+version_settings(constraint='>=0.22.1')
+
+docker_compose('docker-compose-onehub.yaml')
+
+docker_build(
+  'onehub/onehub-ui',
+  './onehub/tn.onehub.main')
+
+docker_build(
+  'onehub/hermes-service',
+  './onehub/hermes-service')
+
+docker_build(
+  'onehub/product-service',
+  './onehub/product-service')
+
+docker_build(
+  'onehub/product-migration',
+  './onehub/product-migration')
+
+docker_build(
+  'onehub/party-management-migration-service',
+  './onehub/party-management-migration-service')
+
+docker_build(
+  'onehub/subscription-migration',
+  './onehub/subscription-migration')
+
+docker_build(
+  'onehub/ticket-migration',
+  './onehub/ticket-migration')
+
+docker_build(
+  'onehub/ticket-service',
+  './onehub/ticket-service')
+
+docker_build(
+  'onehub/customer-management-service',
+  './onehub/customer-management-service')
+
+docker_build(
+  'onehub/party-management-service',
+  './onehub/party-management-service')
+
+docker_build(
+  'onehub/subscription-service',
+  './onehub/subscription-service')
+
+docker_build(
+  'onehub/netone-ticket-consumer',
+  './onehub/netone-ticket-consumer')
+
+docker_build(
+  'onehub/helpdesk-central-logger-service',
+  './onehub/helpdesk-central-logger-service')
+
+docker_build(
+  'onehub/helpdesk-organization-service',
+  './onehub/helpdesk-organization-service')
+
+docker_build(
+  'onehub/channel-service',
+  './onehub/channel-service')
+
+docker_build(
+  'onehub/state-activity-service',
+  './onehub/state-activity-service')
+
+
+docker_build(
+  'onehub/helpdesk-authentication-service',
+  './onehub/helpdesk-authentication-service')
+
+docker_build(
+  'onehub/onehub-meta-service',
+  './onehub/onehub-meta-service')
+
+
+dc_resource('onehub-ui', labels=["01-client"])
+
+dc_resource('hermes-service', labels=["02-middleware"])
+
+dc_resource('ticket-service', labels=["03-backend-services"])
+dc_resource('customer-management-service', labels=["03-backend-services"])
+dc_resource('party-management-service', labels=["03-backend-services"])
+dc_resource('subscription-service', labels=["03-backend-services"])
+dc_resource('netone-ticket-consumer', labels=["03-backend-services"])
+dc_resource('helpdesk-central-logger-service', labels=["03-backend-services"])
+dc_resource('organization-service', labels=["03-backend-services"])
+dc_resource('channel-service', labels=["03-backend-services"])
+dc_resource('state-activity-service', labels=["03-backend-services"])
+dc_resource('helpdesk-authentication-service', labels=["03-backend-services"])
+dc_resource('onehub-meta-service', labels=["03-backend-services"])
+dc_resource('product-service', labels=["03-backend-services"])
+
+dc_resource('postgres_db', labels=["04-databases"])
+dc_resource('mongo', labels=["04-databases"])
+
+dc_resource('zookeeper', labels=["05-message-brokers"])
+dc_resource('rabbitmq', labels=["05-message-brokers"])
+dc_resource('kafka', labels=["05-message-brokers"])
+dc_resource('kowl', labels=["05-message-brokers"])
+
+dc_resource('ticket-migration', labels=["06-migration"])
+dc_resource('party-management-migration-service', labels=["06-migration"])
+dc_resource('subscription-migration', labels=["06-migration"])
+dc_resource('sqlserver', labels=["06-migration"])
+dc_resource('sqlserver-tools', labels=["06-migration"])
+dc_resource('connect', labels=["06-migration"])
+dc_resource('product-migration', labels=["06-migration"])

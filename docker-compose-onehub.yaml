@@ -1,0 +1,165 @@
+version: '3'
+services:
+
+  onehub-ui:
+    build:
+      context: "onehub/tn.onehub.main"
+    ports: 
+      - "3000:3000"
+    environment:
+      - NEXT_PUBLIC_STAGING_API_URL=hermes-service
+
+  hermes-service:
+    build:
+      context: "onehub/hermes-service"
+
+  product-service:
+    build:
+      context: "onehub/product-service"
+
+  product-migration:
+    build:
+      context: "onehub/product-migration"
+
+  party-management-migration-service:
+    build:
+      context: "onehub/party-management-migration-service"
+
+  subscription-migration:
+    build:
+      context: "onehub/subscription-migration"
+
+  ticket-migration:
+    build:
+     context: "onehub/ticket-migration"
+
+  customer-management-service:
+    build:
+      context: "onehub/customer-management-service"
+
+  party-management-service:
+    build:
+      context: "onehub/party-management-service"
+
+  subscription-service:
+    build:
+     context: "onehub/subscription-service"
+
+  ticket-service:
+    build:
+     context: "onehub/ticket-service"
+
+  netone-ticket-consumer:
+    build:
+      context: "onehub/netone-ticket-consumer"
+
+  pool-service:
+    build:
+      context: "onehub/pool-service"
+
+  helpdesk-central-logger-service:
+    build:
+      context: "onehub/helpdesk-central-logger-service"
+
+  organization-service:
+    build:
+      context: "onehub/helpdesk-organization-service"
+
+  channel-service:
+    build:
+      context: "onehub/channel-service"
+
+  state-activity-service:
+    build:
+      context: "onehub/state-activity-service"
+
+  helpdesk-authentication-service:
+    build:
+      context: "onehub/helpdesk-authentication-service"
+
+  onehub-meta-service:
+    build:
+      context: "onehub/onehub-meta-service"
+
+  zookeeper:
+    image: quay.io/debezium/zookeeper:2.1
+    ports:
+     - 2181:2181
+     - 2888:2888
+     - 3888:3888
+  
+  kafka:
+    image: quay.io/debezium/kafka:2.1
+    ports:
+     - 9092:9092
+    links:
+     - zookeeper
+    environment:
+     - ZOOKEEPER_CONNECT=zookeeper:2181
+
+  rabbitmq:
+    image: rabbitmq:3.8.14-management
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+      - "15692:15692"
+
+  sqlserver:
+    image: mcr.microsoft.com/azure-sql-edge
+    hostname: 'sqlserver'
+    environment:
+      ACCEPT_EULA: Y
+      MSSQL_SA_PASSWORD: transformers!123
+      MSSQL_PID: Developer
+      MSSQL_AGENT_ENABLED: true
+    ports:
+      - '1434:1433'
+
+  sqlserver-tools:
+    build:
+      context: debezium-sqlserver-init/mssql
+    environment:
+      ACCEPT_EULA: Y
+      MSSQL_SA_PASSWORD: transformers!123
+      MSSQL_PID: Developer
+    depends_on:
+      - sqlserver
+
+  connect:
+    image: quay.io/debezium/connect:2.1
+    ports:
+     - 8083:8083
+    links:
+     - kafka
+     - sqlserver
+    environment:
+     - BOOTSTRAP_SERVERS=kafka:9092
+     - GROUP_ID=1
+     - CONFIG_STORAGE_TOPIC=my_connect_configs
+     - OFFSET_STORAGE_TOPIC=my_connect_offsets
+     - STATUS_STORAGE_TOPIC=my_connect_statuses
+ 
+  kowl:
+    image: redpandadata/console:latest
+    container_name: kowl
+    environment:
+      - KAFKA_BROKERS=kafka:9092
+    ports:
+      - 8081:8080
+    depends_on:
+      - "kafka"
+
+  mongo:
+    image: "mongo"
+    ports:
+      - '27017-27019:27017-27019'
+
+  postgres_db:
+    image: 'postgres:13.1-alpine'
+    container_name: PostgresCont 
+    restart: always
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+    ports:
+      - '5432:5432'
