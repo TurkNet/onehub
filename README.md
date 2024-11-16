@@ -73,6 +73,7 @@ A lot of them, covering different aspects of building distributed services, whet
 
 Just to name a few:
 - [RESTful API](https://www.restapitutorial.com) implementation with [Spring Boot](https://spring.io/projects/spring-boot)
+- [GrapgQL](https://graphql.org/) implementation with [Nodejs](https://graphql.org/graphql-js/) and [Apollo Server](https://www.apollographql.com/docs/apollo-server/getting-started)
 - [Consumers](https://docs.spring.io/spring-amqp/reference/amqp/receiving-messages/async-annotation-driven.html) implementation with [messaging with rabbitmq](https://spring.io/guides/gs/messaging-rabbitmq)
 - [UI](https://react.dev/) implementation with [React](https://react.dev/)
 - [Domain Driven Design](http://dddcommunity.org) fundamentals
