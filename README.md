@@ -181,7 +181,6 @@ you can reach out the tech stack [here](https://stackshare.io/turknet-transforme
 * Automate repetitive tasks
 * TDD
 * CI
-* DDD
 * SOLID
 * Clean Code
 * Fast Feedback
